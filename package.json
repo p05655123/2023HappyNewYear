@@ -1,5 +1,22 @@
 {
   "dependencies": {
     "firebase": "^9.15.0"
-  }
+  },
+  "name": "2023happynewyear",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/p05655123/2023HappyNewYear.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/p05655123/2023HappyNewYear/issues"
+  },
+  "homepage": "https://github.com/p05655123/2023HappyNewYear#readme"
 }
