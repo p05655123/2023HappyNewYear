@@ -1,9 +1,8 @@
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
-// import {getDatabase ,ref,set,onValue,remove} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
-
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js'
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js'
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js'
+import { getFirestore, collection, doc, setDoc ,addDoc } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { get, ref , set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCcPnRbbbga2L4oSju3vaeJEkl_0D-E7FU",
@@ -18,21 +17,49 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const db = getFirestore(app);
+const dbRef = collection(db, "users");
+export {db}
 
-// window.storedata = function storedata() {
-//     console.log("XD")
-//   db.collection("movies").doc("新世紀福爾摩斯").set({
-//     name: "新世紀福爾摩斯",
-//     date: "2010",
-//     desctiption: "本劇改編自阿瑟·柯南·道爾爵士家喻戶曉的推理小說，一位脾氣古怪的大偵探在現代倫敦的街頭悄悄巡行，四處搜尋線索。",
-//     actors: ["班尼迪克·康柏拜區", "馬丁·費曼"]
+window.getCities = async function getCities(){
+  const data = {
+    name: "Raja Tamil",
+    country: "Canada"
+  };
+  await addDoc(dbRef, data)
+  .then(docRef => {
+      console.log("Document has been added successfully");
+  })
+  .catch(error => {
+      console.log(error);
+  })
+  console.log("XD")
+}
+
+// const data = {
+//   name: "Raja Tamil",
+//   country: "Canada"
+// };
+// addDoc(dbRef, data)
+// .then(docRef => {
+//     console.log("Document has been added successfully");
+// })
+// .catch(error => {
+//     console.log(error);
+// })
+
+// window.getCities =  async function getCities(){
+//   const docRef = await addDoc(collection(db, "cities"), {
+//     name: "Tokyo",
+//     country: "Japan"
 //   });
+//   console.log("Document written with ID: ", docRef.id);
 // }
 
-window.getCities = async function getCities(db) {
-    const citiesCol = collection(db, 'cities');
-    const citySnapshot = await getDocs(citiesCol);
-    const cityList = citySnapshot.docs.map(doc => doc.data());
-    return cityList;
-  }
+
+// window.getCities = async function getCities(db) {
+//     const citiesCol = collection(db, 'cities');
+//     const citySnapshot = await getDocs(citiesCol);
+//     const cityList = citySnapshot.docs.map(doc => doc.data());
+//     return cityList;
+//   }

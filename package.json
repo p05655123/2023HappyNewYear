@@ -18,5 +18,6 @@
   "bugs": {
     "url": "https://github.com/p05655123/2023HappyNewYear/issues"
   },
-  "homepage": "https://github.com/p05655123/2023HappyNewYear#readme"
+  "homepage": "https://github.com/p05655123/2023HappyNewYear#readme",
+  "devDependencies": {}
 }
