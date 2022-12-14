@@ -27,11 +27,6 @@ googleAuthProvider.addScope('email');
 
 auth.languageCode = 'it';
 const dbRef = collection(db, "users");
-var loginOrNot = '';
-
-// if(loginOrNot === ''){
-//   alert('NO!');
-// }
 
 window.getCities = async function getCities(){
   const data = {
@@ -72,7 +67,8 @@ onAuthStateChanged(auth, user => {
     var content = user.displayName;
     document.getElementById("loginName").textContent = ("歡迎 " + content);
   }else{
-    document.getElementById("loginName").textContent = "親愛的用戶您好，您尚未登入" + "</br>" + "請點擊下方使用Google帳號登入"
+    alert('請登入!')
+    document.getElementById("loginName").textContent = "親愛的用戶您好，您尚未登入\r\n請點擊下方使用Google帳號登入"
   }
 }
 )
