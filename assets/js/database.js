@@ -47,28 +47,30 @@ window.getCities = async function getCities(){
 window.logIn = async function logIn(){
   signInWithPopup(auth, googleAuthProvider)
                   .then(auth => {
-                    loginOrNot = auth.user.displayName;
                     console.log(auth.user);
                     console.log(auth.user.displayName);
                     var content = auth.user.displayName;
-                    console.log(document.getElementById("loginName").textContent);
-                    document.getElementById("loginName").textContent = ("歡迎 " + content);
+                    console.log(document.getElementById("loginName").innerText);
+                    document.getElementById("loginName").innerText = ("歡迎 " + content);
                   })
 } 
 
 window.logOut = async function logOut(){
   signOut(auth).then(() => {
     console.log("logged out")
+    alert('已登出 !')
   })
 }
 
 onAuthStateChanged(auth, user => {
   if(user){
     var content = user.displayName;
-    document.getElementById("loginName").textContent = ("歡迎 " + content);
+    document.getElementById("loginName").innerText = ("歡迎 " + content);
+    document.getElementById("loginNav").innerText = (content + " 你好");
   }else{
-    alert('請登入!')
-    document.getElementById("loginName").textContent = "親愛的用戶您好，您尚未登入\r\n請點擊下方使用Google帳號登入"
+    // alert('親愛的用戶您好，您尚未登入，點擊下方按鈕使用Google帳號登入 !')
+    document.getElementById("loginName").innerText = "親愛的用戶您好，您尚未登入\r\n點擊下方按鈕使用Google帳號登入"
+    document.getElementById("loginNav").innerText = "登入頁面";
   }
 }
 )
