@@ -22,7 +22,6 @@ const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider()
 // const facebookAuthProvider = new FacebookAuthProvider()
 // facebookAuthProvider.addScope('public_profile');
-googleAuthProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 googleAuthProvider.addScope('profile');
 googleAuthProvider.addScope('email');
 
