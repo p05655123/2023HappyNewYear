@@ -1,9 +1,6 @@
 {
   "rules": {
     ".read": true,
-    ".write": true,
-      "ccimfreshmengo": { 
-        ".indexOn": "timeStamp" 
-      }
+    ".write": true
   }
 }
