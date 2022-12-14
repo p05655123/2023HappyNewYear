@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="is-preload">
+	<body onload="loginPage()" class="is-preload">
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -25,10 +25,10 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="index.html">活動主頁</a></li>
+							<li><a href="index.html">活動主頁</a></li>
 							<li><a href="generic.html">Generic Page</a></li>
 							<li><a href="elements.html">Elements Reference</a></li>
-							<li><a id="loginNav" href="login.html"></a></li>
+							<li class="active"><a id="loginNav" href="login.html"></a></li>
 						</ul>
 						<ul class="icons">
 							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -42,13 +42,13 @@
 					<div id="main">
 						<article class="post featured">
 							<ul class="actions special">
-								<li><h2 id = "loginName"></h2></li>
+								<li><h3 id = "loginName"></h3></li>
 							</ul>
 							<ul class="actions special">
-								<li><button onclick="logIn()"> Google帳號登入</button></li>
+								<li><button id="loginBtn" onclick="logIn()"> Google帳號登入</button></li>
 							</ul>
 							<ul class="actions special">
-								<li><button onclick="logOut()"> 登出</button></li>
+								<li><button id="logoutBtn" onclick="logOut()"> 登出</button></li>
 							</ul>
 							<ul class="actions special">
 								<li><button onclick="getCities()"> 儲存測試</button></li>

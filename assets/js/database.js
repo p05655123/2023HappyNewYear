@@ -62,15 +62,27 @@ window.logOut = async function logOut(){
   })
 }
 
+window.loginPage = async function loginPage(){
+  onAuthStateChanged(auth, user => {
+    if(user){
+      var content = user.displayName;
+      document.getElementById("loginName").innerText = ("歡迎 " + content);
+      document.getElementById('loginBtn').disabled = true;
+      document.getElementById('logoutBtn').disabled = false;
+    }else{
+      // alert('親愛的用戶您好，您尚未登入，點擊下方按鈕使用Google帳號登入 !')
+      document.getElementById("loginName").innerText = "親愛的用戶您好，您目前尚未登入\r\n點擊下方按鈕使用Google帳號登入"
+      document.getElementById('loginBtn').disabled = false;
+      document.getElementById('logoutBtn').disabled = true;
+    }
+  })
+}
+
 onAuthStateChanged(auth, user => {
   if(user){
     var content = user.displayName;
-    document.getElementById("loginName").innerText = ("歡迎 " + content);
     document.getElementById("loginNav").innerText = (content + " 你好");
   }else{
-    // alert('親愛的用戶您好，您尚未登入，點擊下方按鈕使用Google帳號登入 !')
-    document.getElementById("loginName").innerText = "親愛的用戶您好，您尚未登入\r\n點擊下方按鈕使用Google帳號登入"
     document.getElementById("loginNav").innerText = "登入頁面";
   }
-}
-)
+})
