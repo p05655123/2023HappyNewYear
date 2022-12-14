@@ -20,6 +20,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider()
+googleAuthProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+auth.languageCode = 'it';
 const dbRef = collection(db, "users");
 
 console.log(app)
