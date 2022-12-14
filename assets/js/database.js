@@ -27,8 +27,11 @@ googleAuthProvider.addScope('email');
 
 auth.languageCode = 'it';
 const dbRef = collection(db, "users");
+var loginOrNot = '';
 
-console.log(app)
+// if(loginOrNot === ''){
+//   alert('NO!');
+// }
 
 window.getCities = async function getCities(){
   const data = {
@@ -45,38 +48,31 @@ window.getCities = async function getCities(){
   console.log("XD")
 } 
 
-// window.logIn = async function logIn(){
-//   signInWithPopup(auth, googleAuthProvider)
-//                   .then(result => {
-//                         // This gives you a Google Access Token. You can use it to access the Google API.
-//                         const credential = GoogleAuthProvider.credentialFromResult(result);
-//                         const token = credential.accessToken;
-//                         // The signed-in user info.
-//                         const user = result.user;
-//                         console.log(user);
-//                   })
-// } 
-
-// window.logOut = async function logOut(){
-//   signOut(auth).then(() => {
-//     console.log("logged out")
-//   })
-// } 
-
-// window.signOut = async function signOut(){
-//   signOut(auth).then(() => {
-//     console.log("logged out")
-//   })
-// } 
-
-/* google登入方法 */
+/* google登入 */
 window.logIn = async function logIn(){
   signInWithPopup(auth, googleAuthProvider)
-                  .then(auth => console.log(auth))
+                  .then(auth => {
+                    loginOrNot = auth.user.displayName;
+                    console.log(auth.user);
+                    console.log(auth.user.displayName);
+                    var content = auth.user.displayName;
+                    console.log(document.getElementById("loginName").textContent);
+                    document.getElementById("loginName").textContent = ("歡迎 " + content);
+                  })
 } 
 
 window.logOut = async function logOut(){
   signOut(auth).then(() => {
     console.log("logged out")
   })
-} 
+}
+
+onAuthStateChanged(auth, user => {
+  if(user){
+    var content = user.displayName;
+    document.getElementById("loginName").textContent = ("歡迎 " + content);
+  }else{
+    document.getElementById("loginName").textContent = "親愛的用戶您好，您尚未登入" + "</br>" + "請點擊下方使用Google帳號登入"
+  }
+}
+)
