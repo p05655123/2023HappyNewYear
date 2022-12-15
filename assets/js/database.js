@@ -28,25 +28,30 @@ googleAuthProvider.addScope('email');
 auth.languageCode = 'it';
 
 window.uploadAnswer = async function uploadAnswer(){
-  var yes = confirm('你確定要送出答案嗎？');
-  if (yes) {
-    onAuthStateChanged(auth, user => {
-      if(user){
-        var userName = user.displayName;
-        var userUid = user.uid;
-        try {
-          setDoc(doc(db, "users", userUid), {
-            name: userName,
-            answer: document.getElementById("answer").value
-          }, { merge: true });
-        } catch (err) {
-          console.error("Error: ", err);
-        }
+  onAuthStateChanged(auth, user => {
+    if(user){
+      if(document.getElementById("answer").value === ""){
+        alert('您尚未輸入答案 ！');
       }else{
-        alert('您尚未登入無法上傳您的答案 ！');
+        var yes = confirm('你確定要送出答案嗎？');
+        if (yes) {
+          var userName = user.displayName;
+          var userUid = user.uid;
+          try {
+            setDoc(doc(db, "users", userUid), {
+              name: userName,
+              answer: document.getElementById("answer").value
+            }, { merge: true });
+          } catch (err) {
+            console.error("Error: ", err);
+          }
+          document.getElementById("answer").value = "";
+        }
       }
-    })
-  }
+    }else{
+      alert('您尚未登入無法上傳您的答案 ！');
+    }
+  })
 } 
 
 /* google登入 */
