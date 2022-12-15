@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js'
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js'
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged , FacebookAuthProvider } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js'
-import { getFirestore, collection, doc, setDoc ,addDoc } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getFirestore, collection, doc, setDoc ,addDoc, connectFirestoreEmulator } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 import { get, ref , set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const firebaseConfig = {
@@ -18,6 +18,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+// connectFirestoreEmulator(db, 'localhost', 8080);
 const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider()
 // const facebookAuthProvider = new FacebookAuthProvider()
@@ -26,23 +27,26 @@ googleAuthProvider.addScope('profile');
 googleAuthProvider.addScope('email');
 auth.languageCode = 'it';
 
-const dbRef = collection(db, "users");
-console.log(dbRef)
-
-window.getCities = async function getCities(){
-  console.log("XDXDXD")
-  const data = {
-    name: "Raja Tamil",
-    country: "Canada"
-  };
-  await addDoc(dbRef, data)
-  .then(docRef => {
-      console.log("Document has been added successfully");
-  })
-  .catch(error => {
-      console.log(error);
-  })
-  console.log("XD")
+window.uploadAnswer = async function uploadAnswer(){
+  var yes = confirm('你確定要送出答案嗎？');
+  if (yes) {
+    onAuthStateChanged(auth, user => {
+      if(user){
+        var userName = user.displayName;
+        var userUid = user.uid;
+        try {
+          setDoc(doc(db, "users", userUid), {
+            name: userName,
+            answer: document.getElementById("answer").value
+          }, { merge: true });
+        } catch (err) {
+          console.error("Error: ", err);
+        }
+      }else{
+        alert('您尚未登入無法上傳您的答案 ！');
+      }
+    })
+  }
 } 
 
 /* google登入 */
@@ -70,7 +74,6 @@ window.loginPage = async function loginPage(){
       document.getElementById('loginBtn').disabled = true;
       document.getElementById('logoutBtn').disabled = false;
     }else{
-      // alert('親愛的用戶您好，您尚未登入，點擊下方按鈕使用Google帳號登入 !')
       document.getElementById("loginName").innerText = "親愛的用戶您好，您目前尚未登入\r\n點擊下方按鈕使用Google帳號登入"
       document.getElementById('loginBtn').disabled = false;
       document.getElementById('logoutBtn').disabled = true;
