@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "linhappynewyear-2f5aa"
-  }
+    "default": "linhappynewyear-2f5aa",
+    "staging": "linhappynewyear-2f5aa"
+  },
+  "targets": {},
+  "etags": {}
 }

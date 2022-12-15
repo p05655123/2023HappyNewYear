@@ -24,11 +24,13 @@ const googleAuthProvider = new GoogleAuthProvider()
 // facebookAuthProvider.addScope('public_profile');
 googleAuthProvider.addScope('profile');
 googleAuthProvider.addScope('email');
-
 auth.languageCode = 'it';
+
 const dbRef = collection(db, "users");
+console.log(dbRef)
 
 window.getCities = async function getCities(){
+  console.log("XDXDXD")
   const data = {
     name: "Raja Tamil",
     country: "Canada"
@@ -48,9 +50,7 @@ window.logIn = async function logIn(){
   signInWithPopup(auth, googleAuthProvider)
                   .then(auth => {
                     console.log(auth.user);
-                    console.log(auth.user.displayName);
                     var content = auth.user.displayName;
-                    console.log(document.getElementById("loginName").innerText);
                     document.getElementById("loginName").innerText = ("歡迎 " + content);
                   })
 } 
