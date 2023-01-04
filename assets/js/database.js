@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js'
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js'
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged , FacebookAuthProvider } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js'
-import { getFirestore, collection, doc, setDoc, getDoc, addDoc, connectFirestoreEmulator } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getFirestore, collection, doc, setDoc, getDoc, addDoc, connectFirestoreEmulator ,onSnapshot } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 import { get, ref , set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const firebaseConfig = {
@@ -47,7 +47,10 @@ window.uploadAnswer = async function uploadAnswer(){
           } catch (err) {
             console.error("Error: ", err);
           }
-          alert('送出成功，除夕當日12:00前皆可更改您的答案！');
+          const unsub = onSnapshot(doc(db, "users", userUid), (doc) => {
+            console.log(doc.data());
+            alert('送出成功，除夕當日12:00前皆可更改您的答案！');
+          });
         }
       }
     }else{
@@ -83,10 +86,6 @@ window.mainPage = async function mainPage(){
             document.getElementById("answer1").value = docSnap.data().answer1;
             document.getElementById("answer2").value = docSnap.data().answer2;
             document.getElementById("answer3").value = docSnap.data().answer3;
-          } else {
-            document.getElementById("answer1").value = "";
-            document.getElementById("answer2").value = "";
-            document.getElementById("answer3").value = "";
           }
         })
       } catch (err) {
