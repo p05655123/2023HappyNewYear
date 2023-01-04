@@ -94,7 +94,7 @@ window.uploadAnswer2 = async function uploadAnswer2(){
         }
       }
     }else{
-      alert('您還尚未登入，請登入後再進行下注 ！');
+      alert('您還尚未登入，請登入後再進行上傳 ！');
     }
   })
 } 
