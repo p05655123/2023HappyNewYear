@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="is-preload">
+	<body onload="game2Page()" class="is-preload">
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -27,7 +27,7 @@
 						<ul class="links">
 							<li><a href="index.html">活動主頁</a></li>
 							<li class="active"><a href="generic.html">預熱活動</a></li>
-							<li><a href="">待解鎖活動(按下只會回到主頁)</a></li>
+							<li><a onclick="notOpen()">待解鎖活動</a></li>
 							<li><a id="loginNav" href="login.html"></a></li>
 						</ul>
 					</nav>
@@ -43,33 +43,44 @@
 									<h2>預熱活動</h2>
 								</header>
 								<!-- <p>此次2023新年趴將分為線上賽及實體賽，線上賽採計分數至「除夕當日12:00」，線上賽分成兩個頁面「活動主頁」及「預熱活動」，請先在此頁面完成第一個活動再前往預熱活動查看！</p> -->
-								<a href="images/game1.png" class="image main"><img src="images/game1.png" alt="" /></a>
+								<a href="images/game2.png" class="image main"><img src="images/game2.png" alt="" /></a>
 								<p>
-									<h3>第一個下注選項(賠率：1.5倍)</h3>
-									<p>除夕吃年夜飯時，第五個坐下的人是男性。</br>(範例：是，下注300。)</p>
+									<h3>第一張圖</br>(提示：不用提示，太簡單了)</h3>
+									<a href="images/game2_1.jpg" class="image main"><img src="images/game2_1.jpg" alt="" /></a>
 									<div class="col-6 col-12-xsmall">
-										<input type="text" name="answer1" id="answer1" value="" placeholder="是，下注300。" />
+										<input type="text" name="game2_answer1" id="game2_answer1" value="" placeholder="(範例)林利印、林利印。" />
 									</div>
 								</p>
 								<p>
-									<h3>第二個下注選項(賠率：1.8倍)</h3>
-									<p>除夕夜在場參加此活動的人總共有幾位？</br>(範例：15位，下注200。)</p>
+									<h3>第二張圖</br>(提示：左邊大人、右邊小孩)</h3>
+									<a href="images/game2_2.jpg" class="image main"><img src="images/game2_2.jpg" alt="" /></a>
 									<div class="col-6 col-12-xsmall">
-										<input type="text" name="answer2" id="answer2" value="" placeholder="15位，下注200。" />
+										<input type="text" name="game2_answer2" id="game2_answer2" value="" placeholder="(範例)林俊榮、林利印。" />
 									</div>
 								</p>
 								<p>
-									<h3>第三個下注選項(賠率：2.0倍)</h3>
-									<p>撇除利印，第一個登入此網站會員的人是誰？</br>(範例：林利印，下注0。)</p>
+									<h3>第三張圖</br>(提示：家中某位小孩幼時)</h3>
+									<a href="images/game2_3.jpg" class="image main"><img src="images/game2_3.jpg" alt="" /></a>
 									<div class="col-6 col-12-xsmall">
-										<input type="text" name="answer3" id="answer3" value="" placeholder="林利印，下注0。" />
+										<input type="text" name="game2_answer3" id="game2_answer3" value="" placeholder="(範例)林利印。" />
+									</div>
+								</p>
+								<p>
+									<h3>第四張圖</br>(提示：家中兩個小孩，原圖沒有牽手、沒有下雪、沒有戴帽子)</h3>
+									<a href="images/game2_4.jpg" class="image main"><img src="images/game2_4.jpg" alt="" /></a>
+									<div class="col-6 col-12-xsmall">
+										<input type="text" name="game2_answer4" id="game2_answer4" value="" placeholder="(範例)林利印、林利印。" />
+									</div>
+								</p>
+								<p>
+									<h3>第五張圖</br>(提示：原圖的人手裡拿著蛋糕)</h3>
+									<a href="images/game2_5.jpg" class="image main"><img src="images/game2_5.jpg" alt="" /></a>
+									<div class="col-6 col-12-xsmall">
+										<input type="text" name="game2_answer5" id="game2_answer5" value="" placeholder="(範例)林利印。" />
 									</div>
 								</p>
 								<ul class="actions special">
-									<li><a id="storeAnswer" onclick="uploadAnswer()" class="button large">送出下注</a></li>
-								</ul>
-								<ul class="actions special">
-									<li><a href="generic.html" id="game2Page" class="button large">前往預熱活動頁面</a></li>
+									<li><a id="storeAnswer" onclick="uploadAnswer2()" class="button large">送出答案</a></li>
 								</ul>
 							</article>
 
